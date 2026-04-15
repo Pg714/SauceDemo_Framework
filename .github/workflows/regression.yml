@@ -28,7 +28,7 @@ jobs:
         chrome-version: stable
 
     - name: Run Selenium Tests
-      run: mvn clean test -DsuiteXmlFile=testng.xml
+      run: mvn clean test -DsuiteXmlFile=textng.xml
       
     - name: Upload Test Report
       if: always() # Runs even if tests fail
