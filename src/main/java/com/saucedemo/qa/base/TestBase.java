@@ -21,8 +21,7 @@ public class TestBase {
 	public TestBase() {
 		try {
 			prop = new Properties();
-			FileInputStream ip = new FileInputStream("C:\\Users\\91975\\Desktop\\Eclipse Project\\Eclipse Workspace\\"
-			+"SauceDemoTest\\src\\main\\java\\com\\saucedemo\\qa\\config\\config.properties");
+			FileInputStream ip = new FileInputStream("src/main/java/com/saucedemo/qa/config/config.properties");
 			prop.load(ip);
 		}
 		catch (FileNotFoundException e){
