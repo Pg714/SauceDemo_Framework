@@ -38,17 +38,20 @@ public class TestBase {
 			//System.setProperty("webdriver.chrome.driver", "D:\\Drivers\\chromedriver.exe");
 			ChromeOptions options = new ChromeOptions();
 
-			// 1. Disable the Password Generation and Checkup service
-			Map<String, Object> prefs = new HashMap<String, Object>();
-			prefs.put("credentials_enable_service", false);
-			prefs.put("profile.password_manager_enabled", false);
-			options.setExperimentalOption("prefs", prefs);
+//			// 1. Disable the Password Generation and Checkup service
+//			Map<String, Object> prefs = new HashMap<String, Object>();
+//			prefs.put("credentials_enable_service", false);
+//			prefs.put("profile.password_manager_enabled", false);
+//			options.setExperimentalOption("prefs", prefs);
+//
+//			// 2. Disable Safe Browsing (which triggers breach alerts)
+//			options.addArguments("--safebrowsing-disable-extension-blacklist");
+//			options.addArguments("--safebrowsing-disable-download-protection");
 
-			// 2. Disable Safe Browsing (which triggers breach alerts)
-			options.addArguments("--safebrowsing-disable-extension-blacklist");
-			options.addArguments("--safebrowsing-disable-download-protection");
-
-			// 3. Optional: Run in Incognito or use a clean profile to avoid synced data
+			options.addArguments("--headless=new"); 
+			options.addArguments("--no-sandbox");
+			options.addArguments("--disable-dev-shm-usage");
+			options.addArguments("--window-size=1920,1080");
 			options.addArguments("--incognito");
 			driver = new ChromeDriver(options);
 		}else if(browserName.equals("Edge")) {
