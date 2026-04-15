@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sauce Demo Test Automation Test Suite">
+	<test name="Sauce Demo Test Cases">
+		<classes>
+			<class name="com.saucedemo.qa.testcases.LoginPageTest"/>
+			<class name="com.saucedemo.qa.testcases.HomePageTest"/>
+			<class name="com.saucedemo.qa.testcases.ProductPageTest"/>
+		</classes>
+	</test> <!-- Test -->
+</suite> <!-- Suite -->
+
+
+
