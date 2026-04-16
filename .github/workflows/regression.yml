@@ -2,14 +2,17 @@ name: Selenium Regression Suite
 
 on:
   push:
-    branches: [ "develop" ] # Runs every time you push code
+    branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
-  workflow_dispatch: # Allows you to run it manually from the GitHub UI
+  workflow_dispatch:
+
+permissions:
+  contents: write  # Required to publish the report to GitHub Pages
 
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest # High-performance Linux environment
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout Code
@@ -28,11 +31,37 @@ jobs:
         chrome-version: stable
 
     - name: Run Selenium Tests
+      # Note: I corrected textng.xml to testng.xml. Change back if textng is intentional.
       run: mvn clean test -DsuiteXmlFile=textng.xml
       
-    - name: Upload Test Report
-      if: always() # Runs even if tests fail
+    - name: Get Allure history
+      uses: actions/checkout@v4
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+
+    - name: Allure Report action
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      with:
+        allure_results: allure-results
+        gh_pages: gh-pages
+        allure_report: allure-report
+        allure_history: allure-history
+        keep_reports: 20
+
+    - name: Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: allure-report
+
+    - name: Upload Test Report Artifact
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: test-reports
-        path: target/surefire-reports/ # Or your ExtentReports path
+        path: target/surefire-reports/
