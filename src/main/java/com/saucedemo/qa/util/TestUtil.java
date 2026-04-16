@@ -14,8 +14,7 @@ import com.saucedemo.qa.base.TestBase;
 
 public class TestUtil extends TestBase {
 
-	public static String TESTDATA_SHEET_PATH = "C:\\Users\\91975\\Desktop\\Eclipse Project\\Eclipse Workspace\\"+
-	"SauceDemoTest\\src\\main\\java\\com\\saucedemo\\qa\\testdata\\SauceDemoTestData.xlsx";
+	public static String TESTDATA_SHEET_PATH = "src/main/java/com/saucedemo/qa/testdata/SauceDemoTestData.xlsx";
 
 	static Workbook book;
 	static Sheet sheet;
